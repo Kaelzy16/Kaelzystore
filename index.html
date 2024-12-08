@@ -152,6 +152,35 @@
       <div class="dot" data-slide="1"></div>
       <div class="dot" data-slide="2"></div>
     </div>
+    
+    <script>
+    const slides = document.querySelector('.slides');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
+    const totalSlides = dots.length;
+
+    function showSlide(index) {
+      slides.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      showSlide(currentIndex);
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        currentIndex = parseInt(dot.dataset.slide);
+        showSlide(currentIndex);
+      });
+    });
+
+    // Geser otomatis setiap 3 detik
+    setInterval(nextSlide, 3000);
+  </script>
+  
     <!-- Kategori Top Up Game -->
     <h2>Top Up Game</h2>
     <div class="grid">
@@ -213,34 +242,6 @@
     </div>
   </div>
 
-<script>
-    const slides = document.querySelector('.slides');
-    const dots = document.querySelectorAll('.dot');
-    let currentIndex = 0;
-    const totalSlides = dots.length;
-
-    function showSlide(index) {
-      slides.style.transform = `translateX(-${index * 100}%)`;
-      dots.forEach(dot => dot.classList.remove('active'));
-      dots[index].classList.add('active');
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % totalSlides;
-      showSlide(currentIndex);
-    }
-
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        currentIndex = parseInt(dot.dataset.slide);
-        showSlide(currentIndex);
-      });
-    });
-
-    // Geser otomatis setiap 3 detik
-    setInterval(nextSlide, 3000);
-  </script>
-  
   <!-- Footer -->
   <div class="footer">
     <p>Hubungi Kami: <a href="mailto:support@topupgames.com">support@topupgames.com</a></p>
