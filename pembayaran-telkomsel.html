@@ -3,230 +3,255 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pembayaran Pulsa dan Kuota Telkomsel</title>
+  <title>Top Up Pulsa & Kuota Telkomsel</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f7f7f7;
+      background-color: #f5f5f5;
     }
+
     .container {
-      width: 80%;
-      margin: 50px auto;
-      padding: 30px;
-      background-color: #fff;
+      max-width: 600px;
+      margin: 30px auto;
+      background-color: #ffffff;
+      padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
-    h2 {
+
+    .header {
       text-align: center;
-      color: #6a1b9a; /* Ungu */
-      font-size: 30px;
+      color: #6A0DAD;
       margin-bottom: 20px;
     }
-    .section {
-      margin-bottom: 40px;
+
+    .header h1 {
+      margin: 0;
     }
-    .section h3 {
-      font-size: 24px;
-      color: #333;
+
+    .form-group {
       margin-bottom: 15px;
     }
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      text-align: center;
-      padding: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    .card:hover {
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      transform: translateY(-5px);
-    }
-    .card.active {
-      background-color: #6a1b9a; /* Ungu */
-      color: #fff;
-    }
-    .title {
-      font-size: 18px;
+
+    .form-group label {
+      display: block;
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
-    .price {
-      font-size: 16px;
-      color: #6a1b9a;
-    }
-    .btn-pembayaran {
+
+    .form-group input,
+    .form-group select {
       width: 100%;
-      padding: 15px;
-      background-color: #6a1b9a; /* Ungu */
-      color: white;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .form-group select {
+      background-color: #fff;
+    }
+
+    .package-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .package-item {
+      flex: 1 1 calc(50% - 10px);
+      background-color: #6A0DAD;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      border-radius: 5px;
       cursor: pointer;
-      margin-top: 30px;
-      transition: background-color 0.3s ease;
     }
-    .btn-pembayaran:hover {
-      background-color: #4a148c;
+
+    .package-item:hover {
+      background-color: #580E9B;
     }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #6A0DAD;
+      color: white;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      background-color: #580E9B;
+    }
+
     .footer {
       text-align: center;
       margin-top: 20px;
       font-size: 14px;
-      color: #777;
-    }
-    .footer a {
-      text-decoration: none;
-      color: #6a1b9a;
+      color: #666;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Pembayaran Pulsa dan Kuota Telkomsel</h2>
-
-    <!-- Pulsa Section -->
-    <div class="section">
-      <h3>Pulsa Reguler</h3>
-      <div class="card-container" id="pulsa-container">
-        <div class="card" data-value="5000" data-price="6000">
-          <div class="title">Pulsa Rp 5.000</div>
-          <div class="price">Rp 6.000</div>
-        </div>
-        <div class="card" data-value="10000" data-price="11000">
-          <div class="title">Pulsa Rp 10.000</div>
-          <div class="price">Rp 11.000</div>
-        </div>
-        <div class="card" data-value="20000" data-price="21000">
-          <div class="title">Pulsa Rp 20.000</div>
-          <div class="price">Rp 21.000</div>
-        </div>
-        <div class="card" data-value="50000" data-price="51000">
-          <div class="title">Pulsa Rp 50.000</div>
-          <div class="price">Rp 51.000</div>
-        </div>
-        <div class="card" data-value="100000" data-price="101000">
-          <div class="title">Pulsa Rp 100.000</div>
-          <div class="price">Rp 101.000</div>
-        </div>
-        <div class="card" data-value="200000" data-price="202000">
-          <div class="title">Pulsa Rp 200.000</div>
-          <div class="price">Rp 202.000</div>
-        </div>
-        <div class="card" data-value="300000" data-price="305000">
-          <div class="title">Pulsa Rp 300.000</div>
-          <div class="price">Rp 305.000</div>
-        </div>
-      </div>
+    <div class="header">
+      <h1>Kael Shop - Pulsa & Kuota</h1>
+      <p>Isi pulsa dan kuota dengan mudah dan cepat</p>
     </div>
 
-    <!-- Kuota Section -->
-    <div class="section">
-      <h3>Kuota Telkomsel</h3>
-      <div class="card-container" id="kuota-container">
-        <div class="card" data-value="1GB_Telkomsel" data-price="15000">
-          <div class="title">1GB (7 Hari)</div>
-          <div class="price">Rp 15.000</div>
-        </div>
-        <div class="card" data-value="2GB_Telkomsel" data-price="20000">
-          <div class="title">2GB (30 Hari)</div>
-          <div class="price">Rp 20.000</div>
-        </div>
-        <div class="card" data-value="5GB_Telkomsel" data-price="50000">
-          <div class="title">5GB (30 Hari)</div>
-          <div class="price">Rp 50.000</div>
-        </div>
-        <div class="card" data-value="10GB_Telkomsel" data-price="90000">
-          <div class="title">10GB (30 Hari)</div>
-          <div class="price">Rp 90.000</div>
-        </div>
-        <div class="card" data-value="30GB_Telkomsel" data-price="150000">
-          <div class="title">30GB (30 Hari)</div>
-          <div class="price">Rp 150.000</div>
-        </div>
-        <div class="card" data-value="50GB_Telkomsel" data-price="250000">
-          <div class="title">50GB (30 Hari)</div>
-          <div class="price">Rp 250.000</div>
-        </div>
-        <div class="card" data-value="100GB_Telkomsel" data-price="500000">
-          <div class="title">100GB (30 Hari)</div>
-          <div class="price">Rp 500.000</div>
+    <form id="transaction-form">
+      <!-- Input Nama -->
+      <div class="form-group">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
+      </div>
+
+      <!-- Input Nomor Telepon -->
+      <div class="form-group">
+        <label for="phone">Nomor Telepon:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Masukkan nomor telepon Telkomsel" required>
+      </div>
+
+      <!-- Pilihan Item -->
+      <div class="form-group">
+        <label>Item:</label>
+        <select id="item" required>
+          <option value="">Pilih Item</option>
+          <option value="Pulsa">Pulsa</option>
+          <option value="Kuota">Kuota</option>
+        </select>
+      </div>
+
+      <!-- Pilihan Paket -->
+      <div class="form-group">
+        <label>Paket:</label>
+        <div class="package-list" id="package-list">
+          <!-- Paket akan di-generate melalui JavaScript -->
         </div>
       </div>
-    </div>
 
-    <button class="btn-pembayaran" onclick="bayar()">Lanjutkan Pembayaran</button>
-    
+      <!-- Data Transaksi -->
+      <div class="form-group">
+        <label>Data Transaksi:</label>
+        <textarea id="transaction-data" readonly placeholder="Data transaksi akan muncul di sini" style="width: 100%; height: 100px; resize: none;"></textarea>
+      </div>
+
+      <!-- Tombol Bayar -->
+      <button type="button" class="btn" id="pay-button">Bayar</button>
+    </form>
+
     <div class="footer">
-      <p>Jika ada pertanyaan, hubungi kami di <a href="https://wa.me/6281234567890" target="_blank">WhatsApp</a></p>
+      <p>&copy; 2024 Kael Shop</p>
     </div>
   </div>
 
   <script>
-    let selectedPulsa = null;
-    let selectedKuota = null;
+  const packages = {
+    Pulsa: [
+      { name: 'Pulsa Rp5.000', price: 5000 },
+      { name: 'Pulsa Rp10.000', price: 10000 },
+      { name: 'Pulsa Rp20.000', price: 20000 },
+      { name: 'Pulsa Rp25.000', price: 25000 },
+      { name: 'Pulsa Rp50.000', price: 50000 },
+      { name: 'Pulsa Rp75.000', price: 75000 },
+      { name: 'Pulsa Rp100.000', price: 100000 },
+      { name: 'Pulsa Rp150.000', price: 150000 },
+      { name: 'Pulsa Rp200.000', price: 200000 }
+    ],
+    Kuota: [
+      // Kuota Harian
+      { name: 'Kuota 1GB 1 Hari', price: 5000 },
+      { name: 'Kuota 2GB 1 Hari', price: 9000 },
+      { name: 'Kuota 3GB 1 Hari', price: 13000 },
+      // Kuota Mingguan
+      { name: 'Kuota 2GB 7 Hari', price: 15000 },
+      { name: 'Kuota 5GB 7 Hari', price: 25000 },
+      { name: 'Kuota 10GB 7 Hari', price: 35000 },
+      // Kuota Bulanan
+      { name: 'Kuota 1GB 30 Hari', price: 10000 },
+      { name: 'Kuota 2GB 30 Hari', price: 18000 },
+      { name: 'Kuota 3GB 30 Hari', price: 27000 },
+      { name: 'Kuota 5GB 30 Hari', price: 42000 },
+      { name: 'Kuota 10GB 30 Hari', price: 75000 },
+      { name: 'Kuota 20GB 30 Hari', price: 145000 },
+      { name: 'Kuota 30GB 30 Hari', price: 210000 },
+      { name: 'Kuota Unlimited 30 Hari', price: 180000 },
+      // Kuota Malam (Data Midnight)
+      { name: 'Kuota Malam 5GB 30 Hari', price: 20000 },
+      { name: 'Kuota Malam 10GB 30 Hari', price: 35000 },
+      { name: 'Kuota Malam 20GB 30 Hari', price: 60000 },
+      // Kuota Combo (Internet + Telp + SMS)
+      { name: 'Combo 2GB + 30 Menit Telp + 50 SMS 30 Hari', price: 25000 },
+      { name: 'Combo 5GB + 100 Menit Telp + 100 SMS 30 Hari', price: 50000 },
+      { name: 'Combo 10GB + 200 Menit Telp + 200 SMS 30 Hari', price: 90000 }
+    ]
+  };
 
-    // Handle Pulsa Selection
-    const pulsaCards = document.querySelectorAll('#pulsa-container .card');
-    pulsaCards.forEach(card => {
-      card.addEventListener('click', () => {
-        if (selectedPulsa) {
-          selectedPulsa.classList.remove('active');
-        }
-        card.classList.add('active');
-        selectedPulsa = card;
+  const packageList = document.getElementById('package-list');
+  const transactionData = document.getElementById('transaction-data');
+  const payButton = document.getElementById('pay-button');
+  const itemSelect = document.getElementById('item');
+
+  // Update Paket Berdasarkan Item yang Dipilih
+  itemSelect.addEventListener('change', () => {
+    const selectedItem = itemSelect.value;
+    packageList.innerHTML = '';
+
+    if (packages[selectedItem]) {
+      packages[selectedItem].forEach(pkg => {
+        const packageItem = document.createElement('div');
+        packageItem.className = 'package-item';
+        packageItem.textContent = `${pkg.name} - Rp${pkg.price}`;
+        packageItem.dataset.name = pkg.name;
+        packageItem.dataset.price = pkg.price;
+        packageList.appendChild(packageItem);
+
+        packageItem.addEventListener('click', () => {
+          const name = document.getElementById('name').value;
+          const phone = document.getElementById('phone').value;
+
+          if (name && phone) {
+            transactionData.value = `
+*ADA ORDERAN NIH BANG KAEL⚡️📦*
+
+*INFORMASI TRANSAKSI📝*
+Nama: ${name}
+Nomor telepon: ${phone}
+Item: ${selectedItem}
+Paket: ${pkg.name}
+Harga: Rp${pkg.price}
+
+*NOTES:*
+_- PESANAN ANDA SEGERA KAMI PROSES_
+_- MOHON MENUNGGU DENGAN SABAR_
+_- DI LARANG SPAM ADMIN BALAS 1 PERSATU_
+> TERIMA KASIH SUDAH BERBELANJA DI KAEL SHOP
+            `;
+          } else {
+            alert('Harap isi nama dan nomor telepon terlebih dahulu.');
+          }
+        });
       });
-    });
-
-    // Handle Kuota Selection
-    const kuotaCards = document.querySelectorAll('#kuota-container .card');
-    kuotaCards.forEach(card => {
-      card.addEventListener('click', () => {
-        if (selectedKuota) {
-          selectedKuota.classList.remove('active');
-        }
-        card.classList.add('active');
-        selectedKuota = card;
-      });
-    });
-
-    // Handle Payment
-    function bayar() {
-      let message = "*PESANAN BARU*\n\n";
-      
-      if (selectedPulsa) {
-        const pulsaTitle = selectedPulsa.querySelector('.title').textContent;
-        const pulsaPrice = selectedPulsa.querySelector('.price').textContent;
-        message += `Pulsa: ${pulsaTitle}\nHarga Pulsa: ${pulsaPrice}\n\n`;
-      } else {
-        message += "Pulsa: Belum dipilih\n\n";
-      }
-
-      if (selectedKuota) {
-        const kuotaTitle = selectedKuota.querySelector('.title').textContent;
-        const kuotaPrice = selectedKuota.querySelector('.price').textContent;
-        message += `Kuota: ${kuotaTitle}\nHarga Kuota: ${kuotaPrice}\n\n`;
-      } else {
-        message += "Kuota: Belum dipilih\n\n";
-      }
-
-      message += "_Anda akan segera diarahkan untuk menyelesaikan pembayaran._\n\nTerima kasih telah bertransaksi dengan kami!";
-
-      // Ganti URL WhatsApp dengan nomor WhatsApp yang sesuai
-      const url = `https://wa.me/6281234567890?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
     }
-  </script>
+  });
+
+  // Kirim ke WhatsApp
+  payButton.addEventListener('click', () => {
+    if (transactionData.value) {
+      const message = encodeURIComponent(transactionData.value);
+      window.open(`https://wa.me/6282396700834?text=${message}`, '_blank');
+    } else {
+      alert('Harap pilih paket terlebih dahulu.');
+    }
+  });
+</script>
 </body>
 </html>
