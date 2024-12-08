@@ -54,26 +54,30 @@
       margin: 20px 0;
     }
 
+    /* Kotak Diamond dan Metode Pembayaran */
     .item {
       flex: 1 1 calc(50% - 10px);
       max-width: calc(50% - 10px);
       padding: 15px;
-      background: #f4f4f4;
+      background: linear-gradient(135deg, #6a11cb, #2575fc); /* Warna gradasi */
+      color: white;
       text-align: center;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s;
       border: 2px solid transparent;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow untuk efek 3D */
     }
 
     .item:hover {
-      background: #e1e1e1;
+      background: linear-gradient(135deg, #4b0dab, #1f4f9d); /* Warna gradasi saat hover */
       transform: scale(1.05);
     }
 
     .item.active {
-      border: 2px solid #6a11cb;
-      background: #d9e7ff;
+      border: 2px solid #ffffff;
+      background: linear-gradient(135deg, #7e33cc, #3549d1); /* Warna lebih cerah untuk item aktif */
     }
 
     .summary {
@@ -215,18 +219,14 @@
       }
 
       const message = `
-        *ADA ORDERAN NIH BANG KAEL📦⚡️*
-        
         Data Transaksi:
         Nama: ${document.getElementById('name').value}
-        Nick Name Game: ${document.getElementById('nickname').value}
-        Nomor Telepon: ${document.getElementById('phone').value}
+        Nickname: ${document.getElementById('nickname').value}
         ID Game: ${document.getElementById('game-id').value}
+        Nomor Telepon: ${document.getElementById('phone').value}
         Diamond: ${selectedDiamond.value}
         Harga: Rp ${selectedDiamond.price}
         Metode Pembayaran: ${selectedPaymentMethod}
-      
-      *_DI TUNGGU YA MUNGKIN BANG KAEL SEDANG SIBUK_*
       `;
 
       const whatsappLink = `https://wa.me/6282396700834?text=${encodeURIComponent(message)}`;
