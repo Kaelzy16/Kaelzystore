@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top Up Game Selection</title>
+  <title>Top Up Game dan Kuota Internet</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,69 +11,69 @@
       padding: 0;
       background: linear-gradient(135deg, #2c3e50, #34495e);
       color: white;
-      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     .container {
       max-width: 1200px;
-      margin: 0 auto;
+      margin: 20px auto;
       padding: 20px;
     }
-    h1 {
-      font-size: 2.5rem;
+    h1, h2 {
+      text-align: center;
       margin-bottom: 20px;
-      text-align: left;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
     }
-    .grid1 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
-    }
-    .game-card {
+    .card {
       background: rgba(255, 255, 255, 0.1);
       border-radius: 10px;
       padding: 15px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .game-card:hover {
+    .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
     }
-    .game-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
+    .card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 10px;
     }
-    .game-card h3 {
+    .card h3 {
       font-size: 1.2rem;
-      margin: 10px 0 0;
+      margin: 10px 0 5px;
     }
-    .game-card .button {
+    .card p {
+      font-size: 0.9rem;
+      margin: 0 0 10px;
+    }
+    .card .button {
       display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #3498db;
+      padding: 8px 15px;
+      background-color: #4CAF50;
       color: white;
       text-decoration: none;
       border-radius: 5px;
-      font-size: 1rem;
+      font-size: 0.9rem;
       transition: background-color 0.3s;
     }
-    .game-card .button:hover {
-      background-color: #2980b9;
+    .card .button:hover {
+      background-color: #45a049;
     }
     .footer {
       background-color: #2c3e50;
       text-align: center;
       color: white;
       padding: 15px 20px;
-      font-size: 0.9rem;
-      margin-top: 20px;
+      font-size: 0.8rem;
       line-height: 1.5;
       width: 100%;
     }
@@ -88,62 +88,48 @@
 </head>
 <body>
   <div class="container">
-    <h1>GAMES</h1>
+    <h1>Top Up Game dan Kuota Internet</h1>
+
+    <!-- Kategori Top Up Game -->
+    <h2>Top Up Game</h2>
     <div class="grid">
-      <div class="game-card">
+      <div class="card">
         <img src="game1.jpg" alt="Game 1">
         <h3>Game 1</h3>
+        <p>Top up Diamond</p>
         <a href="pembayaran-game1.html" class="button">Top Up Sekarang</a>
       </div>
-      <div class="game-card">
+      <div class="card">
         <img src="game2.jpg" alt="Game 2">
         <h3>Game 2</h3>
-        <a href="pembayaran-game1.html" class="button">Top Up Sekarang</a>
+        <p>Top up UC</p>
+        <a href="pembayaran-game2.html" class="button">Top Up Sekarang</a>
       </div>
-      <div class="game-card">
-        <img src="game3.jpg" alt="Game 3">
-        <h3>Game 3</h3>
-        <a href="pembayaran-game1.html" class="button">Top Up Sekarang</a>
-      </div>
-      <div class="game-card">
-        <img src="game4.jpg" alt="Game 4">
-        <h3>Game 4</h3>
-        <a href="pembayaran-game1.html" class="button">Top Up Sekarang</a>
-      </div>
-  <div class="container">
-    <h1>GAMES</h1>
-    <div class="grid1">
-      <div class="game-card">
-        <img src="game1.jpg" alt="Game 1">
-        <h3>Game 1</h3>
-        <a href="pembayaran-game1.html" class="button">Top Up Sekarang</a>
-      </div>
-      <div class="game-card">
-        <img src="game2.jpg" alt="Game 2">
-        <h3>Game 2</h3>
-        <a href="pembayaran-game1.html" class="button">Top Up Sekarang</a>
-      </div>
-      <div class="game-card">
-        <img src="game3.jpg" alt="Game 3">
-        <h3>Game 3</h3>
-        <a href="pembayaran-game1.html" class="button">Top Up Sekarang</a>
-      </div>
-      <div class="game-card">
-        <img src="game4.jpg" alt="Game 4">
-        <h3>Game 4</h3>
-        <a href="pembayaran-game1.html" class="button">Top Up Sekarang</a>
-      </div>
-      </body>
     </div>
-    
+
+    <!-- Kategori Kuota Internet -->
+    <h2>Kuota Internet</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="kuota1.jpg" alt="Kuota 1">
+        <h3>Kuota 10GB</h3>
+        <p>Rp 50.000</p>
+        <a href="pembayaran-kuota1.html" class="button">Beli Sekarang</a>
+      </div>
+      <div class="card">
+        <img src="kuota2.jpg" alt="Kuota 2">
+        <h3>Kuota 20GB</h3>
+        <p>Rp 100.000</p>
+        <a href="pembayaran-kuota2.html" class="button">Beli Sekarang</a>
+      </div>
     </div>
-    <div class="footer">
-    <p>Hubungi Kami</p>
-    <p>Email: <a href="mailto:support@topupgames.com">support@topupgames.com</a></p>
-    <p>Telepon: <a href="tel:+6282396700834">+62 823-9670-0834</a></p>
-    <p>Alamat: Jl. Manado-Bitung, Manado, Indonesia</p>
-    <p>&copy; 2024 Top Up Games.</p>
   </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Hubungi Kami: <a href="mailto:support@topupgames.com">support@topupgames.com</a></p>
+    <p>Telepon: <a href="tel:+6281234567890">+62 812-3456-7890</a></p>
+    <p>&copy; 2024 Top Up Games</p>
   </div>
 </body>
 </html>
