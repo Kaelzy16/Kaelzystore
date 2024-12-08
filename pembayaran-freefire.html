@@ -159,16 +159,16 @@
       cursor: pointer;
       border-radius: 5px;
     }
-    
+
     /* Hiasan tambahan */
     .diamond-item {
-      background: linear-gradient(45deg, #ff6b6b, #f7b731);
+      background: linear-gradient(45deg, #9b59b6, #8e44ad); /* Purple gradient */
       color: white;
       transition: all 0.3s ease;
     }
 
     .diamond-item:hover {
-      background: linear-gradient(45deg, #ff3f3f, #ffad33);
+      background: linear-gradient(45deg, #7d3c98, #9b59b6);
       transform: scale(1.1);
     }
 
@@ -220,6 +220,22 @@
       <input type="text" id="game-id" placeholder="Masukkan ID Game Anda">
     </div>
 
+    <!-- Pemilihan E-Wallet setelah ID Game -->
+    <div class="form-group">
+      <label for="ewallet">Pilih E-Wallet</label>
+      <div class="payment-options">
+        <div class="payment-item" data-method="OVO">
+          OVO
+        </div>
+        <div class="payment-item" data-method="GoPay">
+          GoPay
+        </div>
+        <div class="payment-item" data-method="DANA">
+          DANA
+        </div>
+      </div>
+    </div>
+
     <div class="form-group">
       <label>Pilih Diamond</label>
       <div class="diamond-options">
@@ -239,9 +255,10 @@
     </div>
 
     <div class="summary">
+      <h3>Data Transaksi</h3>
       <p><strong>Nama:</strong> <span id="summary-name">-</span></p>
       <p><strong>Nick Name Game:</strong> <span id="summary-nickname">-</span></p>
-      <p><strong>Nomor Telepon:</strong> <span id="summary-phone">-</span></p>
+      <p><strong>Nomor Telpon:</strong> <span id="summary-phone">-</span></p>
       <p><strong>ID Game:</strong> <span id="summary-id">-</span></p>
       <p><strong>Diamond:</strong> <span id="summary-diamond">-</span></p>
       <p><strong>Harga:</strong> <span id="summary-price">0</span></p>
