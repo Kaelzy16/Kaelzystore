@@ -9,42 +9,48 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f0f0f0;
+      background-color: #f7f7f7;
     }
     .container {
       width: 80%;
-      margin: 20px auto;
-      padding: 20px;
+      margin: 50px auto;
+      padding: 30px;
       background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
     h2 {
       text-align: center;
       color: #f44336; /* Telkomsel Red */
+      font-size: 30px;
+      margin-bottom: 20px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 40px;
+    }
+    .section h3 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 15px;
     }
     .card-container {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
     }
     .card {
-      width: 30%;
       background-color: #fff;
       border: 1px solid #ddd;
       border-radius: 8px;
       text-align: center;
       padding: 20px;
-      margin: 10px;
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
     .card:hover {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       transform: translateY(-5px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
     .card.active {
       background-color: #f44336;
@@ -53,15 +59,13 @@
     .title {
       font-size: 18px;
       font-weight: bold;
-      color: #333;
+      margin-bottom: 10px;
     }
     .price {
       font-size: 16px;
       color: #f44336;
-      margin-top: 10px;
     }
     .btn-pembayaran {
-      display: block;
       width: 100%;
       padding: 15px;
       background-color: #f44336;
@@ -75,6 +79,16 @@
     }
     .btn-pembayaran:hover {
       background-color: #d32f2f;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #777;
+    }
+    .footer a {
+      text-decoration: none;
+      color: #f44336;
     }
   </style>
 </head>
@@ -137,6 +151,10 @@
     </div>
 
     <button class="btn-pembayaran" onclick="bayar()">Lanjutkan Pembayaran</button>
+    
+    <div class="footer">
+      <p>Jika ada pertanyaan, hubungi kami di <a href="https://wa.me/6281234567890" target="_blank">WhatsApp</a></p>
+    </div>
   </div>
 
   <script>
@@ -169,30 +187,26 @@
 
     // Handle Payment
     function bayar() {
-      if (!selectedPulsa || !selectedKuota) {
-        alert('Pilih pulsa dan kuota terlebih dahulu!');
-        return;
+      let message = "*PESANAN BARU*\n\n";
+      
+      if (selectedPulsa) {
+        const pulsaTitle = selectedPulsa.querySelector('.title').textContent;
+        const pulsaPrice = selectedPulsa.querySelector('.price').textContent;
+        message += `Pulsa: ${pulsaTitle}\nHarga Pulsa: ${pulsaPrice}\n\n`;
+      } else {
+        message += "Pulsa: Belum dipilih\n\n";
       }
 
-      const pulsaTitle = selectedPulsa.querySelector('.title').textContent;
-      const pulsaPrice = selectedPulsa.querySelector('.price').textContent;
-      const kuotaTitle = selectedKuota.querySelector('.title').textContent;
-      const kuotaPrice = selectedKuota.querySelector('.price').textContent;
+      if (selectedKuota) {
+        const kuotaTitle = selectedKuota.querySelector('.title').textContent;
+        const kuotaPrice = selectedKuota.querySelector('.price').textContent;
+        message += `Kuota: ${kuotaTitle}\nHarga Kuota: ${kuotaPrice}\n\n`;
+      } else {
+        message += "Kuota: Belum dipilih\n\n";
+      }
 
-      const message = `
-*PESANAN BARU*
+      message += "_Anda akan segera diarahkan untuk menyelesaikan pembayaran._\n\nTerima kasih telah bertransaksi dengan kami!";
 
-Pulsa: ${pulsaTitle}
-Harga Pulsa: ${pulsaPrice}
-
-Kuota: ${kuotaTitle}
-Harga Kuota: ${kuotaPrice}
-
-_Anda akan segera diarahkan untuk menyelesaikan pembayaran._
-
-Terima kasih telah bertransaksi dengan kami!
-      `;
-      
       // Ganti URL WhatsApp dengan nomor WhatsApp yang sesuai
       const url = `https://wa.me/6282396700834?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
