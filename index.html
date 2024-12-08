@@ -1,6 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swipeable Image Slider</title>
+    <style>
+        /* CSS untuk slider */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slides img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Tombol navigasi */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 1000;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Titik indikator */
+        .indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .indicators button {
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 50%;
+            background-color: gray;
+            cursor: pointer;
+        }
+
+        .indicators button.active {
+            background-color: blue;
+        }
+        .join-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            text-align: center;
+        }
+
+        .join-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slider -->
+    <div class="slider" id="slider">
+        <div class="slides">
+            <img src="promo1.png" alt="Slide 1">
+            <img src="promo2.png" alt="Slide 2">
+            <img src="promo3.png" alt="Slide 3">
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </div>
+
+    <!-- Titik indikator -->
+    <div class="indicators"></div>
+
+    <script>
+        // JavaScript untuk slider
+        const slider = document.getElementById('slider');
+        const slides = document.querySelector('.slides');
+        const images = document.querySelectorAll('.slides img');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        const indicators = document.querySelector('.indicators');
+
+        let currentIndex = 0;
+        let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let isDragging = false;
+
+        // Buat indikator
+        images.forEach((_, index) => {
+            const button = document.createElement('button');
+            if (index === 0) button.classList.add('active');
+            button.addEventListener('click', () => {
+                currentIndex = index;
+                updateSlider();
+            });
+            indicators.appendChild(button);
+        });
+
+        const updateSlider = () => {
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+            const allIndicators = document.querySelectorAll('.indicators button');
+            allIndicators.forEach(indicator => indicator.classList.remove('active'));
+            allIndicators[currentIndex].classList.add('active');
+        };
+
+        // Tombol prev dan next
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            updateSlider();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            updateSlider();
+        });
+
+        // Geser otomatis
+        const autoSlide = () => {
+            setInterval(() => {
+                currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+                updateSlider();
+            }, 3000); // Ganti gambar setiap 3 detik
+        };
+
+        // Fungsi untuk gesture swipe
+        const touchStart = (e) => {
+            isDragging = true;
+            startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+            slides.style.transition = 'none'; // Matikan animasi saat swipe
+        };
+
+        const touchMove = (e) => {
+            if (!isDragging) return;
+            const currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+            currentTranslate = prevTranslate + (currentX - startX);
+            slides.style.transform = `translateX(${currentTranslate}px)`;
+        };
+
+        const touchEnd = () => {
+            isDragging = false;
+            const movedBy = currentTranslate - prevTranslate;
+            if (movedBy < -100 && currentIndex < images.length - 1) {
+                currentIndex++;
+            }
+            if (movedBy > 100 && currentIndex > 0) {
+                currentIndex--;
+            }
+            updateSlider();
+            slides.style.transition = 'transform 0.5s ease-in-out';
+            prevTranslate = -currentIndex * slider.offsetWidth;
+        };
+
+        // Event listeners untuk swipe
+        slider.addEventListener('mousedown', touchStart);
+        slider.addEventListener('mousemove', touchMove);
+        slider.addEventListener('mouseup', touchEnd);
+        slider.addEventListener('mouseleave', () => isDragging && touchEnd());
+        slider.addEventListener('touchstart', touchStart);
+        slider.addEventListener('touchmove', touchMove);
+        slider.addEventListener('touchend', touchEnd);
+
+        // Jalankan slider otomatis
+        autoSlide();
+    </script>
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Top Up Game dan Kuota Internet</title>
@@ -89,98 +288,12 @@
     .footer a:hover {
       text-decoration: underline;
     }
-    .slider {
-      position: relative;
-      width: 100%;
-      max-width: 1200px;
-      height: 400px;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 10px;
-    }
-
-    .slides {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.5s ease-in-out;
-    }
-
-    .slides img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-
-    /* Navigation dots */
-    .dots {
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      background-color: rgba(255, 255, 255, 0.6);
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .dot.active {
-      background-color: #fff;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Top Up Game dan Kuota Internet</h1>
 
-    <div class="slider">
-    <div class="slides">
-      <img src="https://via.placeholder.com/1200x400?text=Foto+1" alt="Foto 1">
-      <img src="https://via.placeholder.com/1200x400?text=Foto+2" alt="Foto 2">
-      <img src="https://via.placeholder.com/1200x400?text=Foto+3" alt="Foto 3">
-    </div>
-    <div class="dots">
-      <div class="dot active" data-slide="0"></div>
-      <div class="dot" data-slide="1"></div>
-      <div class="dot" data-slide="2"></div>
-    </div>
-    
-    <script>
-    const slides = document.querySelector('.slides');
-    const dots = document.querySelectorAll('.dot');
-    let currentIndex = 0;
-    const totalSlides = dots.length;
-
-    function showSlide(index) {
-      slides.style.transform = `translateX(-${index * 100}%)`;
-      dots.forEach(dot => dot.classList.remove('active'));
-      dots[index].classList.add('active');
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % totalSlides;
-      showSlide(currentIndex);
-    }
-
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        currentIndex = parseInt(dot.dataset.slide);
-        showSlide(currentIndex);
-      });
-    });
-
-    // Geser otomatis setiap 3 detik
-    setInterval(nextSlide, 3000);
-  </script>
-  
     <!-- Kategori Top Up Game -->
     <h2>Top Up Game</h2>
     <div class="grid">
