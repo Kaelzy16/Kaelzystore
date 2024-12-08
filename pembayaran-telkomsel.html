@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top Up Pulsa & Kuota Telkomsel</title>
+  <title>Kael Shop - Pilihan Kuota Telkomsel</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,221 +11,173 @@
       padding: 0;
       background-color: #f5f5f5;
     }
-
     .container {
-      max-width: 600px;
-      margin: 30px auto;
-      background-color: #ffffff;
+      max-width: 900px;
+      margin: 20px auto;
       padding: 20px;
+      background: #fff;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-
-    .header {
+    h1, h2 {
       text-align: center;
-      color: #6A0DAD;
-      margin-bottom: 20px;
+      color: #5d3ebc;
     }
-
-    .header h1 {
-      margin: 0;
-    }
-
     .form-group {
       margin-bottom: 15px;
     }
-
     .form-group label {
       display: block;
-      font-weight: bold;
       margin-bottom: 5px;
+      font-weight: bold;
     }
-
-    .form-group input,
-    .form-group select {
+    .form-group input, .form-group select {
       width: 100%;
       padding: 10px;
-      border: 1px solid #ddd;
+      border: 1px solid #ccc;
       border-radius: 5px;
     }
-
-    .form-group select {
-      background-color: #fff;
-    }
-
     .package-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 15px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
     }
-
     .package-item {
-      flex: 1 1 calc(50% - 10px);
-      background-color: #6A0DAD;
-      color: #fff;
       padding: 10px;
+      background-color: #5d3ebc;
+      color: #fff;
       text-align: center;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s;
     }
-
     .package-item:hover {
-      background-color: #580E9B;
+      transform: scale(1.05);
     }
-
-    .btn {
+    #pay-button {
       display: block;
       width: 100%;
-      padding: 10px;
-      background-color: #6A0DAD;
-      color: white;
-      font-size: 16px;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 5px;
-      cursor: pointer;
+      background-color: #5d3ebc;
+      color: #fff;
       border: none;
+      padding: 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
-
-    .btn:hover {
-      background-color: #580E9B;
+    #pay-button:hover {
+      background-color: #472a91;
     }
-
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 14px;
-      color: #666;
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <h1>Kael Shop - Pulsa & Kuota</h1>
-      <p>Isi pulsa dan kuota dengan mudah dan cepat</p>
+    <h1>Kael Shop</h1>
+    <h2>Pilihan Kuota Telkomsel Lengkap</h2>
+
+    <div class="form-group">
+      <label for="name">Nama:</label>
+      <input type="text" id="name" placeholder="Masukkan Nama Anda">
     </div>
 
-    <form id="transaction-form">
-      <!-- Input Nama -->
-      <div class="form-group">
-        <label for="name">Nama:</label>
-        <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
-      </div>
-
-      <!-- Input Nomor Telepon -->
-      <div class="form-group">
-        <label for="phone">Nomor Telepon:</label>
-        <input type="tel" id="phone" name="phone" placeholder="Masukkan nomor telepon Telkomsel" required>
-      </div>
-
-      <!-- Pilihan Item -->
-      <div class="form-group">
-        <label>Item:</label>
-        <select id="item" required>
-          <option value="">Pilih Item</option>
-          <option value="Pulsa">Pulsa</option>
-          <option value="Kuota">Kuota</option>
-        </select>
-      </div>
-
-      <!-- Pilihan Paket -->
-      <div class="form-group">
-        <label>Paket:</label>
-        <div class="package-list" id="package-list">
-          <!-- Paket akan di-generate melalui JavaScript -->
-        </div>
-      </div>
-
-      <!-- Data Transaksi -->
-      <div class="form-group">
-        <label>Data Transaksi:</label>
-        <textarea id="transaction-data" readonly placeholder="Data transaksi akan muncul di sini" style="width: 100%; height: 100px; resize: none;"></textarea>
-      </div>
-
-      <!-- Tombol Bayar -->
-      <button type="button" class="btn" id="pay-button">Bayar</button>
-    </form>
-
-    <div class="footer">
-      <p>&copy; 2024 Kael Shop</p>
+    <div class="form-group">
+      <label for="phone">Nomor Telepon:</label>
+      <input type="text" id="phone" placeholder="Masukkan Nomor Telepon Anda">
     </div>
+
+    <div class="form-group">
+      <label for="item">Pilih Kategori:</label>
+      <select id="item">
+        <option value="" disabled selected>Pilih Kategori</option>
+        <option value="Harian">Harian</option>
+        <option value="Mingguan">Mingguan</option>
+        <option value="Bulanan">Bulanan</option>
+        <option value="Malam">Malam</option>
+        <option value="Unlimited">Unlimited</option>
+      </select>
+    </div>
+
+    <div class="package-list" id="package-list"></div>
+
+    <textarea id="transaction-data" readonly placeholder="Informasi Transaksi Akan Tampil di Sini"></textarea>
+    <button id="pay-button">Bayar</button>
   </div>
 
   <script>
-  const packages = {
-    Pulsa: [
-      { name: 'Pulsa Rp5.000', price: 5000 },
-      { name: 'Pulsa Rp10.000', price: 10000 },
-      { name: 'Pulsa Rp20.000', price: 20000 },
-      { name: 'Pulsa Rp25.000', price: 25000 },
-      { name: 'Pulsa Rp50.000', price: 50000 },
-      { name: 'Pulsa Rp75.000', price: 75000 },
-      { name: 'Pulsa Rp100.000', price: 100000 },
-      { name: 'Pulsa Rp150.000', price: 150000 },
-      { name: 'Pulsa Rp200.000', price: 200000 }
-    ],
-    Kuota: [
-      // Kuota Harian
-      { name: 'Kuota 1GB 1 Hari', price: 5000 },
-      { name: 'Kuota 2GB 1 Hari', price: 9000 },
-      { name: 'Kuota 3GB 1 Hari', price: 13000 },
-      // Kuota Mingguan
-      { name: 'Kuota 2GB 7 Hari', price: 15000 },
-      { name: 'Kuota 5GB 7 Hari', price: 25000 },
-      { name: 'Kuota 10GB 7 Hari', price: 35000 },
-      // Kuota Bulanan
-      { name: 'Kuota 1GB 30 Hari', price: 10000 },
-      { name: 'Kuota 2GB 30 Hari', price: 18000 },
-      { name: 'Kuota 3GB 30 Hari', price: 27000 },
-      { name: 'Kuota 5GB 30 Hari', price: 42000 },
-      { name: 'Kuota 10GB 30 Hari', price: 75000 },
-      { name: 'Kuota 20GB 30 Hari', price: 145000 },
-      { name: 'Kuota 30GB 30 Hari', price: 210000 },
-      { name: 'Kuota Unlimited 30 Hari', price: 180000 },
-      // Kuota Malam (Data Midnight)
-      { name: 'Kuota Malam 5GB 30 Hari', price: 20000 },
-      { name: 'Kuota Malam 10GB 30 Hari', price: 35000 },
-      { name: 'Kuota Malam 20GB 30 Hari', price: 60000 },
-      // Kuota Combo (Internet + Telp + SMS)
-      { name: 'Combo 2GB + 30 Menit Telp + 50 SMS 30 Hari', price: 25000 },
-      { name: 'Combo 5GB + 100 Menit Telp + 100 SMS 30 Hari', price: 50000 },
-      { name: 'Combo 10GB + 200 Menit Telp + 200 SMS 30 Hari', price: 90000 }
-    ]
-  };
+    const packages = {
+      Harian: [
+        { name: 'Kuota 1GB 1 Hari', price: 5000 },
+        { name: 'Kuota 2GB 1 Hari', price: 9000 },
+        { name: 'Kuota 5GB 3 Hari', price: 15000 },
+        { name: 'Kuota 7GB 7 Hari', price: 25000 }
+      ],
+      Mingguan: [
+        { name: 'Kuota 5GB 7 Hari', price: 20000 },
+        { name: 'Kuota 10GB 7 Hari', price: 30000 },
+        { name: 'Kuota Combo 10GB 7 Hari', price: 35000 }
+      ],
+      Bulanan: [
+        { name: 'Kuota 1GB 30 Hari', price: 10000 },
+        { name: 'Kuota 2GB 30 Hari', price: 18000 },
+        { name: 'Kuota 3GB 30 Hari', price: 27000 },
+        { name: 'Kuota 5GB 30 Hari', price: 42000 },
+        { name: 'Kuota 10GB 30 Hari', price: 75000 },
+        { name: 'Kuota 20GB 30 Hari', price: 145000 },
+        { name: 'Kuota 30GB 30 Hari', price: 210000 }
+      ],
+      Malam: [
+        { name: 'Kuota Malam 10GB 7 Hari', price: 12000 },
+        { name: 'Kuota Malam 15GB 30 Hari', price: 25000 },
+        { name: 'Kuota Malam Unlimited 30 Hari', price: 50000 }
+      ],
+      Unlimited: [
+        { name: 'Unlimited 30 Hari (FUP 20GB)', price: 100000 },
+        { name: 'Unlimited 30 Hari (FUP 50GB)', price: 150000 },
+        { name: 'Unlimited 30 Hari (No FUP)', price: 250000 }
+      ]
+    };
 
-  const packageList = document.getElementById('package-list');
-  const transactionData = document.getElementById('transaction-data');
-  const payButton = document.getElementById('pay-button');
-  const itemSelect = document.getElementById('item');
+    const packageList = document.getElementById('package-list');
+    const transactionData = document.getElementById('transaction-data');
+    const payButton = document.getElementById('pay-button');
+    const itemSelect = document.getElementById('item');
 
-  // Update Paket Berdasarkan Item yang Dipilih
-  itemSelect.addEventListener('change', () => {
-    const selectedItem = itemSelect.value;
-    packageList.innerHTML = '';
+    itemSelect.addEventListener('change', () => {
+      const selectedItem = itemSelect.value;
+      packageList.innerHTML = '';
 
-    if (packages[selectedItem]) {
-      packages[selectedItem].forEach(pkg => {
-        const packageItem = document.createElement('div');
-        packageItem.className = 'package-item';
-        packageItem.textContent = `${pkg.name} - Rp${pkg.price}`;
-        packageItem.dataset.name = pkg.name;
-        packageItem.dataset.price = pkg.price;
-        packageList.appendChild(packageItem);
+      if (packages[selectedItem]) {
+        packages[selectedItem].forEach(pkg => {
+          const packageItem = document.createElement('div');
+          packageItem.className = 'package-item';
+          packageItem.textContent = `${pkg.name} - Rp${pkg.price}`;
+          packageItem.dataset.name = pkg.name;
+          packageItem.dataset.price = pkg.price;
+          packageList.appendChild(packageItem);
 
-        packageItem.addEventListener('click', () => {
-          const name = document.getElementById('name').value;
-          const phone = document.getElementById('phone').value;
+          packageItem.addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
 
-          if (name && phone) {
-            transactionData.value = `
+            if (name && phone) {
+              transactionData.value = `
 *ADA ORDERAN NIH BANG KAEL⚡️📦*
 
 *INFORMASI TRANSAKSI📝*
 Nama: ${name}
-Nomor telepon: ${phone}
-Item: ${selectedItem}
+Nomor Telepon: ${phone}
+Item: Kuota ${selectedItem}
 Paket: ${pkg.name}
 Harga: Rp${pkg.price}
 
@@ -234,24 +186,23 @@ _- PESANAN ANDA SEGERA KAMI PROSES_
 _- MOHON MENUNGGU DENGAN SABAR_
 _- DI LARANG SPAM ADMIN BALAS 1 PERSATU_
 > TERIMA KASIH SUDAH BERBELANJA DI KAEL SHOP
-            `;
-          } else {
-            alert('Harap isi nama dan nomor telepon terlebih dahulu.');
-          }
+              `;
+            } else {
+              alert('Harap isi nama dan nomor telepon terlebih dahulu.');
+            }
+          });
         });
-      });
-    }
-  });
+      }
+    });
 
-  // Kirim ke WhatsApp
-  payButton.addEventListener('click', () => {
-    if (transactionData.value) {
-      const message = encodeURIComponent(transactionData.value);
-      window.open(`https://wa.me/6282396700834?text=${message}`, '_blank');
-    } else {
-      alert('Harap pilih paket terlebih dahulu.');
-    }
-  });
-</script>
+    payButton.addEventListener('click', () => {
+      if (transactionData.value) {
+        const message = encodeURIComponent(transactionData.value);
+        window.open(`https://wa.me/6282396700834?text=${message}`, '_blank');
+      } else {
+        alert('Harap pilih paket terlebih dahulu.');
+      }
+    });
+  </script>
 </body>
 </html>
