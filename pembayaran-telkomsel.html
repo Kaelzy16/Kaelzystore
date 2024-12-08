@@ -21,7 +21,7 @@
     }
     h2 {
       text-align: center;
-      color: #f44336; /* Telkomsel Red */
+      color: #6a1b9a; /* Ungu */
       font-size: 30px;
       margin-bottom: 20px;
     }
@@ -53,7 +53,7 @@
       transform: translateY(-5px);
     }
     .card.active {
-      background-color: #f44336;
+      background-color: #6a1b9a; /* Ungu */
       color: #fff;
     }
     .title {
@@ -63,12 +63,12 @@
     }
     .price {
       font-size: 16px;
-      color: #f44336;
+      color: #6a1b9a;
     }
     .btn-pembayaran {
       width: 100%;
       padding: 15px;
-      background-color: #f44336;
+      background-color: #6a1b9a; /* Ungu */
       color: white;
       font-size: 18px;
       border: none;
@@ -78,7 +78,7 @@
       transition: background-color 0.3s ease;
     }
     .btn-pembayaran:hover {
-      background-color: #d32f2f;
+      background-color: #4a148c;
     }
     .footer {
       text-align: center;
@@ -88,7 +88,7 @@
     }
     .footer a {
       text-decoration: none;
-      color: #f44336;
+      color: #6a1b9a;
     }
   </style>
 </head>
@@ -120,6 +120,14 @@
           <div class="title">Pulsa Rp 100.000</div>
           <div class="price">Rp 101.000</div>
         </div>
+        <div class="card" data-value="200000" data-price="202000">
+          <div class="title">Pulsa Rp 200.000</div>
+          <div class="price">Rp 202.000</div>
+        </div>
+        <div class="card" data-value="300000" data-price="305000">
+          <div class="title">Pulsa Rp 300.000</div>
+          <div class="price">Rp 305.000</div>
+        </div>
       </div>
     </div>
 
@@ -146,6 +154,14 @@
         <div class="card" data-value="30GB_Telkomsel" data-price="150000">
           <div class="title">30GB (30 Hari)</div>
           <div class="price">Rp 150.000</div>
+        </div>
+        <div class="card" data-value="50GB_Telkomsel" data-price="250000">
+          <div class="title">50GB (30 Hari)</div>
+          <div class="price">Rp 250.000</div>
+        </div>
+        <div class="card" data-value="100GB_Telkomsel" data-price="500000">
+          <div class="title">100GB (30 Hari)</div>
+          <div class="price">Rp 500.000</div>
         </div>
       </div>
     </div>
@@ -208,7 +224,7 @@
       message += "_Anda akan segera diarahkan untuk menyelesaikan pembayaran._\n\nTerima kasih telah bertransaksi dengan kami!";
 
       // Ganti URL WhatsApp dengan nomor WhatsApp yang sesuai
-      const url = `https://wa.me/6282396700834?text=${encodeURIComponent(message)}`;
+      const url = `https://wa.me/6281234567890?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     }
   </script>
