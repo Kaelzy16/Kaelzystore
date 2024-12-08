@@ -23,7 +23,7 @@
       padding: 20px;
       border-radius: 10px;
       width: 100%;
-      max-width: 500px;
+      max-width: 600px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
 
@@ -42,7 +42,7 @@
       margin-bottom: 5px;
     }
 
-    input, select, button {
+    input, button {
       width: 100%;
       padding: 10px;
       margin-top: 5px;
@@ -60,6 +60,33 @@
 
     button:hover {
       background-color: #45a049;
+    }
+
+    .diamond-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .diamond-item {
+      flex: 1 1 calc(50% - 10px);
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .diamond-item:hover {
+      transform: scale(1.05);
+      background-color: #e1e1e1;
+    }
+
+    .diamond-item.active {
+      border: 2px solid #4CAF50;
+      background-color: #d9f8d9;
     }
 
     .summary {
@@ -94,13 +121,21 @@
     </div>
 
     <div class="form-group">
-      <label for="diamond">Pilih Diamond</label>
-      <select id="diamond">
-        <option value="" data-price="0">-- Pilih Diamond --</option>
-        <option value="100 Diamond" data-price="10000">100 Diamond - Rp 10.000</option>
-        <option value="200 Diamond" data-price="20000">200 Diamond - Rp 20.000</option>
-        <option value="500 Diamond" data-price="50000">500 Diamond - Rp 50.000</option>
-      </select>
+      <label>Pilih Diamond</label>
+      <div class="diamond-options">
+        <div class="diamond-item" data-value="100 Diamond" data-price="10000">
+          100 Diamond<br><strong>Rp 10.000</strong>
+        </div>
+        <div class="diamond-item" data-value="200 Diamond" data-price="20000">
+          200 Diamond<br><strong>Rp 20.000</strong>
+        </div>
+        <div class="diamond-item" data-value="500 Diamond" data-price="50000">
+          500 Diamond<br><strong>Rp 50.000</strong>
+        </div>
+        <div class="diamond-item" data-value="1000 Diamond" data-price="100000">
+          1000 Diamond<br><strong>Rp 100.000</strong>
+        </div>
+      </div>
     </div>
 
     <div class="summary">
@@ -118,13 +153,15 @@
     const nameInput = document.getElementById('name');
     const phoneInput = document.getElementById('phone');
     const gameIdInput = document.getElementById('game-id');
-    const diamondSelect = document.getElementById('diamond');
+    const diamondItems = document.querySelectorAll('.diamond-item');
     const summaryName = document.getElementById('summary-name');
     const summaryPhone = document.getElementById('summary-phone');
     const summaryId = document.getElementById('summary-id');
     const summaryDiamond = document.getElementById('summary-diamond');
     const summaryPrice = document.getElementById('summary-price');
     const payButton = document.getElementById('pay-button');
+
+    let selectedDiamond = null;
 
     // Update summary when inputs change
     nameInput.addEventListener('input', () => {
@@ -139,10 +176,18 @@
       summaryId.textContent = gameIdInput.value || '-';
     });
 
-    diamondSelect.addEventListener('change', () => {
-      const selectedOption = diamondSelect.options[diamondSelect.selectedIndex];
-      summaryDiamond.textContent = selectedOption.value || '-';
-      summaryPrice.textContent = selectedOption.dataset.price || '0';
+    // Handle diamond selection
+    diamondItems.forEach(item => {
+      item.addEventListener('click', () => {
+        diamondItems.forEach(i => i.classList.remove('active')); // Remove active state
+        item.classList.add('active'); // Add active state
+        selectedDiamond = {
+          value: item.dataset.value,
+          price: item.dataset.price
+        };
+        summaryDiamond.textContent = selectedDiamond.value;
+        summaryPrice.textContent = selectedDiamond.price;
+      });
     });
 
     // Handle payment button click
@@ -150,10 +195,8 @@
       const name = nameInput.value;
       const phone = phoneInput.value;
       const gameId = gameIdInput.value;
-      const diamond = diamondSelect.value;
-      const price = diamondSelect.options[diamondSelect.selectedIndex].dataset.price;
 
-      if (!name || !phone || !gameId || !diamond) {
+      if (!name || !phone || !gameId || !selectedDiamond) {
         alert('Harap lengkapi semua data!');
         return;
       }
@@ -162,10 +205,10 @@
         `Nama: ${name}%0A` +
         `Nomor Telepon: ${phone}%0A` +
         `ID Game: ${gameId}%0A` +
-        `Diamond: ${diamond}%0A` +
-        `Harga: Rp ${price}%0A`;
+        `Diamond: ${selectedDiamond.value}%0A` +
+        `Harga: Rp ${selectedDiamond.price}%0A`;
 
-      const whatsappUrl = `https://wa.me/6282396700834?text=${whatsappMessage}`;
+      const whatsappUrl = `https://wa.me/6281234567890?text=${whatsappMessage}`;
       window.open(whatsappUrl, '_blank');
     });
   </script>
