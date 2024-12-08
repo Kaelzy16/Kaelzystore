@@ -188,7 +188,8 @@
     }
   </style>
 </head>
-
+<body>
+  <div class="container">
     <h1>Pembayaran Diamond</h1>
 
     <div class="form-group">
@@ -314,7 +315,28 @@
         alert('Silakan pilih Diamond dan Metode Pembayaran terlebih dahulu!');
         return;
       }
-      alert('Pembayaran berhasil! Terima kasih.');
+
+      // Membuat pesan untuk dikirim ke WhatsApp
+      const message = `
+        *ADA ORDERAN NIH BANG KAEL📦⚡️*
+        
+        Data Transaksi:
+        Nama: ${document.getElementById('name').value}
+        Nick Name Game: ${document.getElementById('nickname').value}
+        Nomor Telepon: ${document.getElementById('phone').value}
+        ID Game: ${document.getElementById('game-id').value}
+        Diamond: ${selectedDiamond.value}
+        Harga: Rp ${selectedDiamond.price}
+        Metode Pembayaran: ${selectedPaymentMethod}
+      
+      *_DI TUNGGU YA MUNGKIN BANG KAEL SEDANG SIBUK_*
+      `;
+
+      // Membuat link WhatsApp dengan pesan
+      const whatsappLink = `https://wa.me/6282396700834?text=${encodeURIComponent(message)}`;
+
+      // Redirect ke WhatsApp
+      window.open(whatsappLink, '_blank');
     });
   </script>
 </body>
