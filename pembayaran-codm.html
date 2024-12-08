@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top-Up Call of Duty Mobile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    .container1, .container3 {
+    max-width: 800px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      background-color: #6800FF;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .container2, .container4, .container5 {
+      max-width: 800px;
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #4e73df;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .diamond-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .diamond-card {
+      flex: 1 1 calc(50% - 20px);
+      max-width: calc(50% - 20px);
+      padding: 20px;
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .diamond-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .diamond-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .diamond-price {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .btn {
+      background: #4e73df;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      background: #2e59d9;
+    }
+
+    @media (max-width: 768px) {
+      .diamond-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+    }
+    .contact-info h3 {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      border-bottom: 2px solid white;
+      display: inline-block;
+      padding-bottom: 5px;
+}
+
+  .contact-info p {
+      margin: 5px 0;
+      font-size: 1em;
+}
+
+/* Responsif untuk perangkat kecil */
+@media (max-width: 768px) {
+  .contact-info h3 {
+     font-size: 1.2em;
+  }
+  .contact-info p {
+     font-size: 0.9em;
+  }
+  </style>
+</head>
+<body>
+  <div class="container5">
+    <h1>Top-Up Call of Duty Mobile</h1>
+
+    <div class="form-group">
+      <label for="id">ID CODM:</label>
+      <input type="text" id="id" placeholder="Masukkan ID Free Fire">
+    </div>
+
+    <div class="form-group">
+      <label for="nickname">Nickname:</label>
+      <input type="text" id="nickname" placeholder="Masukkan Nickname">
+    </div>
+    
+    <div class="container1">
+    <h2>Pilih Paket CP</h2>
+    </form>
+    </div>
+    <div class="container2">
+    <div class="diamond-container" id="cp-options">
+  <div class="diamond-card" data-value="80" data-price="15000">
+    <div class="diamond-title">80 CP</div>
+    <div class="diamond-price">Rp 15.000</div>
+  </div>
+  <div class="diamond-card" data-value="420" data-price="75000">
+    <div class="diamond-title">420 CP</div>
+    <div class="diamond-price">Rp 75.000</div>
+  </div>
+  <div class="diamond-card" data-value="880" data-price="150000">
+    <div class="diamond-title">880 CP</div>
+    <div class="diamond-price">Rp 150.000</div>
+  </div>
+  <div class="diamond-card" data-value="1980" data-price="350000">
+    <div class="diamond-title">1980 CP</div>
+    <div class="diamond-price">Rp 350.000</div>
+  </div>
+  <div class="diamond-card" data-value="3280" data-price="600000">
+    <div class="diamond-title">3280 CP</div>
+    <div class="diamond-price">Rp 600.000</div>
+  </div>
+  <div class="diamond-card" data-value="6480" data-price="1200000">
+    <div class="diamond-title">6480 CP</div>
+    <div class="diamond-price">Rp 1.200.000</div>
+  </div>
+</div>
+
+    <button class="btn" id="pay-button">Bayar Sekarang</button>
+  </div>
+
+  <script>
+    const diamondCards = document.querySelectorAll('.diamond-card');
+    const payButton = document.getElementById('pay-button');
+    let selectedDiamond = null;
+
+    function generateOrderID() {
+      return 'FF' + Math.floor(Math.random() * 1000000);
+    }
+
+    diamondCards.forEach(card => {
+      card.addEventListener('click', () => {
+        diamondCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        selectedDiamond = {
+          value: card.dataset.value,
+          price: card.dataset.price
+        };
+      });
+    });
+
+    payButton.addEventListener('click', () => {
+      if (!selectedDiamond) {
+        alert('Pilih paket diamond terlebih dahulu!');
+        return;
+      }
+
+      const id = document.getElementById('id').value;
+      const nickname = document.getElementById('nickname').value;
+      const orderID = generateOrderID();
+
+      if (!id || !nickname) {
+        alert('Masukkan ID dan Nickname Free Fire Anda!');
+        return;
+      }
+
+      const message = `
+*ADA ORDERAN NIH BANG KAEL📦⚡️*
+
+*INFORMASI TRANSAKSI*
+Nama: ${nickname}
+ID: ${id}
+Nickname: ${nickname}
+Jumlah Diamond: ${selectedDiamond.value}
+Harga: Rp ${selectedDiamond.price}
+ID Pesanan: ${orderID}
+
+*_MOHON TUNGGU MUNGKIN BANG KAEL SEDANG SIBUK_*
+
+_TERIMA KASIH SUDAH ORDER_
+      `;
+
+      const whatsappLink = `https://wa.me/6282396700834?text=${encodeURIComponent(message)}`;
+      window.open(whatsappLink, '_blank');
+    });
+  </script>
+  
+  </div>
+ <div class="container3">
+  <h3>Contact Us</h3>
+  </form>
+  </div>
+  <div class="container4">
+  <div class="contact-info">
+  <p><i class="fas fa-map-marker-alt"></i> <strong>Alamat:</strong> Jalan Manado-Bitung, Manado, Indonesia</p>
+  <p><i class="wa.me/6282396700834"></i> <strong>Telepon:</strong> +62 821 1858 7622
+  +62 823 9670 0834</p>
+  <p><i class="fas fa-envelope"></i> <strong>Email:</strong> kaelzycomplain@gmail.com</p>
+  <p><i class="fas fa-clock"></i> <strong>Jam Operasional:</strong> Buka tiap hari, 07:00 - 22:00</p>
+</div>
+</body>
+</html>
